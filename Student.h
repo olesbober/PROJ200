@@ -1,10 +1,10 @@
 // Student.h
-// by Oles Bober and Rod Deichler
-// BILL CLINTON IS A RAPIST
-// INFOWARS.COM
+// by Oles Bober and Roderic Deichler
 // 05-04-17
 
-#include <iostream>
+#ifndef STUDENT_H
+#define STUDENT_H
+
 #include <string>
 using namespace std;
 
@@ -43,9 +43,6 @@ public:
 
 	// constructor with all variables
 	Student(string[], string[], classroom[]);
-
-	// destructor
-	virtual ~Student();
 
 	// getters
 	// returns isStudent
@@ -99,10 +96,4 @@ Student::Student(string aT[], string dT[], classroom fC[]) {
 	setFirstClass(fC);
 }
 
-// destructor
-// this kills the Student
-Student::~Student() {
-	delete[] arrivalTimes;
-	delete[] departureTimes;
-	delete[] firstClass;
-}
+#endif
