@@ -1,0 +1,45 @@
+ParkingLot map example:
+X|X| |X|X|X|X| |X|X|X|X|X
+X|X|X|X| |X|X| |X|X|X| |X
+X| |X| |X| |X| |X| |X| |X
+ |X| |X| |X| |X| |X| |X| 
+X|X|X|X| | |X|X| | | | | 
+
+ParkingLot 1:
+Length: 7
+Height: 42
+
+ParkingLot 2:
+STAFF ONLY
+
+ParkingLot 3:
+Length: 29
+Height: 10
+
+ParkingLot 4:
+Length: 14
+Height: 30
+
+ParkingLot 5:
+Length: 17
+Height: 4
+
+ParkingLot 6:
+Length: 20
+Height: 11
+
+ParkingLot 7:
+Length: 9
+Height: 34
+
+ParkingLot 8:
+Length: 16
+Height: 34
+
+ParkingLot 9:
+Length: 12
+Height: 26
+
+ParkingLot Overflow:
+Length: 14
+Height: 76
