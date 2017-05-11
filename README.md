@@ -9,3 +9,4 @@ Any notes we need to remember can be written here.
 
 Notes for future reference:
 - Add exception handling in Student.h
+- Not done with ParkingLot.h. It seems more complicated than I imagined it to be: 2-D array are hard to make.
