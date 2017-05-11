@@ -5,19 +5,14 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+#include "Classroom.h"
 #include <string>
 using namespace std;
 
-// struct for a classroom
-struct classroom {
-	// building the classroom is in
-	string building;
 
-	// classroom number
-	int room;
-};
 
 class Student {
+	
 private:
 	// boolean that shows if the Student is enrolled or not
 	bool isStudent;
@@ -36,13 +31,13 @@ private:
 	// 0 - Monday, 1 - Tuesday, 2 - Wednesday, 3 - Thursday, 4 - Friday
 	// If the student does not have a class on that day, 0 will be the classroom number
 	// and "NULL" will be the building
-	classroom firstClass[5];
+	Classroom firstClass[5];
 public:
 	// default constructor
 	Student();
 
 	// constructor with all variables
-	Student(string[], string[], classroom[]);
+	Student(string[], string[], Classroom[]);
 
 	// getters
 	// returns isStudent
@@ -55,7 +50,7 @@ public:
 	string* getDepartureTimesPtr() { return departureTimes; }
 
 	// returns the pointer to the first element of firstClass
-	classroom* getFirstClassPtr() { return firstClass; }
+	Classroom* getFirstClassPtr() { return firstClass; }
 
 	// setters
 	// sets isStudent to argument
@@ -68,7 +63,7 @@ public:
 	void setDepartureTimes(string s[]) { copy(s, s + 5, departureTimes); }
 
 	// takes a classroom array as an argument, and copies all those values into firstClass
-	void setFirstClass(classroom c[]) { copy(c, c + 5, firstClass); }
+	void setFirstClass(Classroom c[]) { copy(c, c + 5, firstClass); }
 };
 
 // default constructor
@@ -76,9 +71,9 @@ public:
 // essentially creates a useless Student
 Student::Student() {
 	isStudent = false;
-	classroom c;
-	c.building = "NULL";
-	c.room = 0;
+	Classroom c;
+	c.setBuilding("NULL");
+	c.setRoom(0);
 	for (int i = 0; i < 5; i++) {
 		arrivalTimes[i] = "0";
 		departureTimes[i] = "0";
@@ -89,7 +84,7 @@ Student::Student() {
 // parameterized constructor
 // sets all the arrays to the argument values
 // doesn't need to take boolean argument because if there are classes then it is a Student
-Student::Student(string aT[], string dT[], classroom fC[]) {
+Student::Student(string aT[], string dT[], Classroom fC[]) {
 	isStudent = true;
 	setArrivalTimes(aT);
 	setDepartureTimes(dT);
