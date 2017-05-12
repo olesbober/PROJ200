@@ -10,4 +10,5 @@ Any notes we need to remember can be written here.
 Notes for future reference:
 - Add exception handling in Student.h
 - ParkingLot.h is done. I had to make the lot vector public in order to be able to access it in a main function. An example is in ParkingLotTester.cpp. This is actually okay because all the other variables are private, including the ones in ParkingSpot.h.
+- Deleted DynamicArray.h and PriorityQueue.h. We do not need them for now. I was also thinking it would be better to use the STL priority queue because this is how we learned about it in class.
 - Questions about Building.h... I'm wondering about parsing the data. Maybe it would be wiser to make building a class within student, because student will already be parsing all of the data and since it is going line by line we can be sure the data is going to the same place. 1 student = 1 spot = 1 building. This is all from one single course they signed up for. If we parse all of the data only looking for start and end times, then it would be hard to keep track of which building is assigned to which student when we parse all of the data again separately, looking for just buildings.
