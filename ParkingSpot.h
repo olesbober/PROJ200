@@ -6,7 +6,7 @@
 #include <string>
 #include <math.h>
 
-// ifndef to prevent multiple inclusion
+// ifndef to prevent multiple inclusions
 #ifndef ParkingSpot_h
 #define ParkingSpot_h
 
@@ -26,7 +26,10 @@ private:
 public:
 	ParkingSpot();
 	int Time(Student &s, int day);
-
+	// getters
+	bool isInUse() const { return inUse; } // returns if the spot is in use or not
+	// setters
+	void setInUse(bool b) { inUse = b; } // sets inUse to boolean value b
 };
 
 ParkingSpot::ParkingSpot() {

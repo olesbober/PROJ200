@@ -9,15 +9,13 @@
 #include <string>
 using namespace std;
 
-
-
 class Student {
-	
+
 private:
 	// boolean that shows if the Student is enrolled or not
 	bool isStudent;
 
-	// string array that holds the arrival times to campus of the student from M-F
+	// string vector that holds the arrival times to campus of the student from M-F
 	// 0 - Monday, 1 - Tuesday, 2 - Wednesday, 3 - Thursday, 4 - Friday
 	// If the student does not have a class on that day, 0 will be the arrival time
 	string arrivalTimes[5];

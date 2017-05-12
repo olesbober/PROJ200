@@ -8,6 +8,8 @@
 
 #include "Student.h"
 #include "ParkingSpot.h"
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class ParkingLot {
@@ -16,69 +18,73 @@ private:
 	string name;
 
 	// every parking lot is a rectangle
-	// length is number of spots lengthwise
-	// height is number of spots from top to bottom
-	// instead of using a 2-D array, we are going to simulate a 2-D array with a 1-D array
+	// length is number of columns in the lot
+	// height is number of rows in the lot
 	int length, height;
-	ParkingSpot* lot;
-	void copy(const ParkingLot &); // deep copy
+
 public:
-	ParkingLot();										// default constructor
-	ParkingLot(string, int, int);						// parameterized constructor
-	ParkingLot(const ParkingLot &);						// copy constructor
-	~ParkingLot() { delete[] lot; }						// destructor
-	ParkingLot& operator=(const ParkingLot &);			// assignment operator
-	ParkingSpot& at(int row, int col);					// this functions acts like [][] in a 2-D array
+	// a 2D vector to represent the parking lot
+	// the lot is public in order to be able to change the inUse variable or not
+	vector<vector<ParkingSpot>> lot;
+
+	ParkingLot();													// default constructor
+	ParkingLot(string, int, int);									// parameterized constructor
+
 	// getters
-	string getLotName() const { return name; }			// returns name of lot
-	int getLotLength() const { return length; }			// returns length of lot
-	int getLotHeight() const { return height; }			// returns height of lot
-	ParkingSpot* operator[](int row) { return lot; }	// returns lot array pointer
+	string getLotName() const { return name; }						// returns name of lot
+	int getLotLength() const { return length; }						// returns length of lot
+	int getLotHeight() const { return height; }						// returns height of lot
+
 	// setters
-	void setLotName(const string n) { name = n; }		// changes the name of the lot
+	void setLotName(const string n) { name = n; }					// changes the name of the lot
+
 	// the length and width of the lots cannot be changed.
+	void printLot();
 };
 
-// deep copy private function
-void ParkingLot::copy(const ParkingLot &pL) {
-	name = pL.name;
-	length = pL.length;
-	height = pL.height;
-	lot = new ParkingSpot[length * height];
-	for (unsigned int i = 0; i < length * height; i++)
-		lot[i] = pL.lot[i];
-}
-
-// implementation of default constructor
-// creates a 25-spot lot with name NULL
+// default constructor
+// creates an empty 2D vector of length 5 and height 5
 ParkingLot::ParkingLot() {
-	name = "NULL";
+	ParkingSpot p;
 	length = 5;
 	height = 5;
-	// allocate memory for ParkingSpots
-	lot = new ParkingSpot[length * height];
+	vector<vector<ParkingSpot>> temp(height, vector<ParkingSpot>(length, p));
+	lot = temp;
+	name = "NULL";
 }
 
-// implementation of parameterized constructor
+// parameterized constructor
 ParkingLot::ParkingLot(string n, int l, int h) {
-	name = n;
+	// create an empty ParkingSpot
+	ParkingSpot p;
+
+	// assign length and height
 	length = l;
 	height = h;
-	// allocate memory for ParkingSpots
-	lot = new ParkingSpot[length * height];
+
+	// create a temporary vector with height h and length l
+	// fill the 2D vector with empty ParkingSpots
+	vector<vector<ParkingSpot>> temp(height, vector<ParkingSpot>(length, p));
+
+	// assign temporary vector to lot
+	lot = temp;
+
+	// assign name
+	name = n;
 }
 
-// copy constructor. Following the Rule of Three:
-// must use deep copy
-ParkingLot::ParkingLot(const ParkingLot &pL) {
-	lot = NULL;
-	copy(pL);
+// a function that prints the lot and shows which spots are taken
+void ParkingLot::printLot() {
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < length; j++) {
+			cout << "|";
+			if (lot[i][j].isInUse())
+				cout << "X";
+			else
+				cout << " ";
+		}
+		cout << "|" << endl;
+	}
 }
 
-// assignment operator
-
-// 
-ParkingSpot& ParkingLot::at(int row, int col) {
-	return lot[row * length + col];
-}
 #endif
