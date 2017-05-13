@@ -58,4 +58,39 @@ int main() {
 	cout << "Done. Printing lot overflow: " << endl;
 	overflow.printLot();
 	printLine();
+	cout << "Is lot useless full?" << endl;
+	if (useless.isFull())
+		cout << "Yes." << endl;
+	else
+		cout << "No." << endl;
+	cout << "Is lot overflow full?" << endl;
+	if (overflow.isFull())
+		cout << "Yes." << endl;
+	else
+		cout << "No." << endl;
+	printLine();
+	cout << "We will now fill both lots in order to further test the functio isFull()." << endl;
+	cout << "Filling ParkingLot useless... ";
+	for (int i = 0; i < useless.getLotHeight(); i++) {
+		for (int j = 0; j < useless.getLotLength(); j++) {
+			useless.lot[i][j].setInUse(true);
+		}
+	}
+	cout << "Done. Is ParkingLot useless full?" << endl;
+	if (useless.isFull())
+		cout << "Yes." << endl;
+	else
+		cout << "No." << endl;
+	cout << "Filling ParkingLot overflow... ";
+	for (int i = 0; i < overflow.getLotHeight(); i++) {
+		for (int j = 0; j < overflow.getLotLength(); j++) {
+			overflow.lot[i][j].setInUse(true);
+		}
+	}
+	cout << "Done. Is ParkingLot overflow full?" << endl;
+	if (overflow.isFull())
+		cout << "Yes." << endl;
+	else
+		cout << "No." << endl;
+	printLine();
 }

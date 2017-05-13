@@ -39,7 +39,8 @@ public:
 	void setLotName(const string n) { name = n; }					// changes the name of the lot
 
 	// the length and width of the lots cannot be changed.
-	void printLot();
+	void printLot() const;
+	bool isFull() const;
 };
 
 // default constructor
@@ -74,7 +75,7 @@ ParkingLot::ParkingLot(string n, int l, int h) {
 }
 
 // a function that prints the lot and shows which spots are taken
-void ParkingLot::printLot() {
+void ParkingLot::printLot() const {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < length; j++) {
 			cout << "|";
@@ -85,6 +86,21 @@ void ParkingLot::printLot() {
 		}
 		cout << "|" << endl;
 	}
+}
+
+// this function returns true if the lot is full, false otherwise
+bool ParkingLot::isFull() const {
+	bool isFull = true;
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < length; j++) {
+			if (!lot[i][j].isInUse()) {
+				isFull = false;
+				goto end;
+			}
+		}
+	}
+	end:
+	return isFull;
 }
 
 #endif
