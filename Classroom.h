@@ -1,4 +1,4 @@
-// Building.h
+// Classroom.h
 // by Roderic Deichler and Oles Bober
 // 05-10-17
 
@@ -7,8 +7,8 @@
 using namespace std;
 
 // ifndef to prevent multiple inclusion
-#ifndef Building_h
-#define Building_h
+#ifndef Classroom_h
+#define Classroom_h
 
 // class with attributes for buildings and where to park
 // struct for a classroom
