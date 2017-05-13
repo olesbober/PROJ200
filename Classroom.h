@@ -168,4 +168,4 @@ void Classroom::bestLot(const string& b) {
 }
 
 
-#endif /* Building_h */
+#endif /* Classroom_h */
