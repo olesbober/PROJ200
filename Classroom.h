@@ -29,6 +29,12 @@ private:
 	
 public:
 	
+	// default constructor
+	Classroom();
+	
+	// paramaterized constructor to set building and the room
+	Classroom(string b, int r);
+	
 	// setter that copies another array's values into bestLot
 	void setBestLotArray(int i[]) { copy(i, i + 10, bestLotArray); }
 	
@@ -41,6 +47,9 @@ public:
 	// getter that returns the string in building
 	string getBuilding() const { return building; }
 	
+	// getter that returns the room number
+	int getRoom() const { return room; }
+	
 	// getter that returns a pointer to the first element in bestLot
 	int* getBestLotArray() { return bestLotArray; }
 	
@@ -49,6 +58,18 @@ public:
 	void bestLot(const string& b);
 	
 };
+
+// implementation of default constructor
+Classroom::Classroom() {
+	building = "NULL";
+	room = 0;
+}
+
+// implementation of paramaterized constructor
+Classroom::Classroom(string b, int r) {
+	setBuilding(b);
+	setRoom(r);
+}
 
 // implementation of bestLot function
 void Classroom::bestLot(const string& b) {
