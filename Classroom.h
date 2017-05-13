@@ -39,18 +39,19 @@ public:
 	void setRoom(int r) { room = r; }
 	
 	// getter that returns the string in building
-	string getBuilding() { return building; }
+	string getBuilding() const { return building; }
 	
 	// getter that returns a pointer to the first element in bestLot
 	int* getBestLotArray() { return bestLotArray; }
 	
 	// function sets bestLotArray according to what
 	// building is passed as an argument
-	void bestLot(string b);
+	void bestLot(const string& b);
+	
 };
 
-  // implementation of bestLot function
-void Classroom::bestLot(string b) {
+// implementation of bestLot function
+void Classroom::bestLot(const string& b) {
 
 	// ordered list of best lots to park for the
 	// Advanced Technology Center

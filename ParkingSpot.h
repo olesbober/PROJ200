@@ -2,38 +2,52 @@
 // by Roderic Deichler and Oles Bober
 // 05-08-17
 
+// ifndef to prevent multiple inclusion
+#ifndef ParkingSpot_h
+#define ParkingSpot_h
+
 #include "Student.h"
 #include <string>
 #include <math.h>
-
-// ifndef to prevent multiple inclusions
-#ifndef ParkingSpot_h
-#define ParkingSpot_h
 
 using namespace std;
 
 // class with attributes for each ParkingSpot
 class ParkingSpot {
 	
-		// bool that determines whether a parking spot is occupied or not
 private:
+	// bool that determines whether a parking spot is occupied or not
 	bool inUse = false;
+	
+	// unsigned int used to determine how many hours until the spot is empty
+	unsigned int hoursRemaining = 0;
+	
+	
+public:
+		// default constructor
+	ParkingSpot();
 	
 		// function that returns an int rounded up to nearest hour
 		// determining how long a student will be parked in the spot
 		// it takes a student and a day as arguments to determine how long
 		// the spot will be held up on a given day based on the student's schedule
-public:
-	ParkingSpot();
 	int Time(Student &s, int day);
-	// getters
-	bool isInUse() const { return inUse; } // returns if the spot is in use or not
-	// setters
-	void setInUse(bool b) { inUse = b; } // sets inUse to boolean value b
+	
+		// getter function that returns a bool (inUse)
+	bool isInUse() const { return inUse; }
+	
+		// setter function that sets bool inUse to the argument
+	void setInUse(bool b) { inUse = b; }
+	
+		// function that decrements the hoursRemaining by 1
+	void decHours();
+
 };
 
+		// default constructor that just makes sure inUse is false and hours is 0
 ParkingSpot::ParkingSpot() {
 	inUse = false;
+	hoursRemaining = 0;
 }
 
 // implementation of Time function (Note: Uses 24:00 time)
@@ -84,11 +98,17 @@ int ParkingSpot::Time(Student &s, int day) {
 	// performing subtraction and casting the float as an int in order to
 	// return the value as an int (because the program will change based on whole
 	// numbers for hours and)
-	int timeInHours = int(totalTimeEnd  - totalTimeStart + 0.99);
+	hoursRemaining = int(totalTimeEnd  - totalTimeStart + 0.99);
 	
 	// return the value stored in timeInHours
-	return timeInHours;
+	return hoursRemaining;
 	
+}
+
+// implementing the function that decrements hours by 1
+void ParkingSpot::decHours() {
+	if (hoursRemaining > 0)
+		hoursRemaining--;
 }
 
 
