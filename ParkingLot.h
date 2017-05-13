@@ -14,8 +14,8 @@ using namespace std;
 
 class ParkingLot {
 private:
-	// name of parking lot
-	string name;
+	// number of parking lot
+	int lotNumber;
 
 	// every parking lot is a rectangle
 	// length is number of columns in the lot
@@ -28,15 +28,15 @@ public:
 	vector<vector<ParkingSpot>> lot;
 
 	ParkingLot();													// default constructor
-	ParkingLot(string, int, int);									// parameterized constructor
+	ParkingLot(int, int, int);										// parameterized constructor
 
 	// getters
-	string getLotName() const { return name; }						// returns name of lot
+	int getLotNumber() const { return lotNumber; }						// returns name of lot
 	int getLotLength() const { return length; }						// returns length of lot
 	int getLotHeight() const { return height; }						// returns height of lot
 
 	// setters
-	void setLotName(const string n) { name = n; }					// changes the name of the lot
+	void setLotNumber(const int lN) { lotNumber = lN; }					// changes the name of the lot
 
 	// the length and width of the lots cannot be changed.
 	void printLot() const;
@@ -51,11 +51,11 @@ ParkingLot::ParkingLot() {
 	height = 5;
 	vector<vector<ParkingSpot>> temp(height, vector<ParkingSpot>(length, p));
 	lot = temp;
-	name = "NULL";
+	lotNumber = 0;
 }
 
 // parameterized constructor
-ParkingLot::ParkingLot(string n, int l, int h) {
+ParkingLot::ParkingLot(int lN, int l, int h) {
 	// create an empty ParkingSpot
 	ParkingSpot p;
 
@@ -71,11 +71,12 @@ ParkingLot::ParkingLot(string n, int l, int h) {
 	lot = temp;
 
 	// assign name
-	name = n;
+	lotNumber = lN;
 }
 
 // a function that prints the lot and shows which spots are taken
 void ParkingLot::printLot() const {
+	cout << "Parking Lot #" << lotNumber << endl;
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < length; j++) {
 			cout << "|";
