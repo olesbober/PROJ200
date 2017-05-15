@@ -8,8 +8,7 @@ The simulation runs hour-by-hour.
 Any notes we need to remember can be written here.
 
 Notes for future reference:
-- Add exception handling in Student.h
-      
-- Deleted DynamicArray.h and PriorityQueue.h. We do not need them for now. I was also thinking it would be better to use the STL priority queue because this is how we learned about it in class.
-
--No more questions about Building.h. Replaced it with Classroom.h. Classroom.h now needs to pull information from ParkingLot.h. 
+- Added percentDrop function in simulation.cpp. This function drops the given percent of students from the total enrolled.
+- Added the cases for students dropping in the main while loop.
+- I also just realized that isStudent is now useless. We can talk about this later.
+Nothing else to report.
