@@ -11,4 +11,5 @@ Notes for future reference:
 - Added percentDrop function in simulation.cpp. This function drops the given percent of students from the total enrolled.
 - Added the cases for students dropping in the main while loop.
 - I also just realized that isStudent is now useless. We can talk about this later.
+
 Nothing else to report.
