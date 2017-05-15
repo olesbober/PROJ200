@@ -160,7 +160,7 @@ int main() {
 		bool flag;
 
 		// look through the students vector and assign them to spots
-		for (unsigned int i = 0; i < students.size(); i++) {
+		for (int i = 0; i < students.size(); i++) {
 
 			flag = true;
 
