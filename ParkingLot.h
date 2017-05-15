@@ -6,11 +6,15 @@
 #ifndef PARKINGLOT_H
 #define PARKINGLOT_H
 
-#include "Student.h"
 #include "ParkingSpot.h"
 #include <iostream>
 #include <vector>
+#include <windows.h>
 using namespace std;
+
+// these two variables allow for cursor reposition
+HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+COORD CursorPosition;
 
 class ParkingLot {
 private:
@@ -31,16 +35,27 @@ public:
 	ParkingLot(int, int, int);										// parameterized constructor
 
 	// getters
-	int getLotNumber() const { return lotNumber; }						// returns name of lot
+	int getLotNumber() const { return lotNumber; }					// returns name of lot
 	int getLotLength() const { return length; }						// returns length of lot
 	int getLotHeight() const { return height; }						// returns height of lot
 
 	// setters
-	void setLotNumber(const int lN) { lotNumber = lN; }					// changes the name of the lot
+	void setLotNumber(const int lN) { lotNumber = lN; }				// changes the name of the lot
 
 	// the length and width of the lots cannot be changed.
-	void printLot() const;
+
+	// prints the entire lot to the x, y coordinate 
+	void printLot(int, int) const;
+
+	// returns true if the lot is full
 	bool isFull() const;
+
+	// returns true if the lot is empty
+	bool isEmpty() const;
+
+	// assigns the given Student to the next available ParkingSpot
+	// also takes the day of the week index for the ParkingSpot time function
+	void nextSpot(Student&, int);
 };
 
 // default constructor
@@ -58,7 +73,7 @@ ParkingLot::ParkingLot() {
 ParkingLot::ParkingLot(int lN, int l, int h) {
 	// create an empty ParkingSpot
 	ParkingSpot p;
-
+	
 	// assign length and height
 	length = l;
 	height = h;
@@ -75,9 +90,17 @@ ParkingLot::ParkingLot(int lN, int l, int h) {
 }
 
 // a function that prints the lot and shows which spots are taken
-void ParkingLot::printLot() const {
-	cout << "Parking Lot #" << lotNumber << endl;
+// the int arguments print the entire lot x characters to the right and y spots down
+void ParkingLot::printLot(int x, int y) const {
+	CursorPosition.X = x;
+	CursorPosition.Y = y;
+	SetConsoleCursorPosition(console, CursorPosition);
+	cout << "Parking Lot #" << lotNumber;
+	CursorPosition.Y++;
 	for (int i = 0; i < height; i++) {
+		CursorPosition.X = x;
+		//CursorPosition.Y = y;
+		SetConsoleCursorPosition(console, CursorPosition);
 		for (int j = 0; j < length; j++) {
 			cout << "|";
 			if (lot[i][j].isInUse())
@@ -85,11 +108,13 @@ void ParkingLot::printLot() const {
 			else
 				cout << " ";
 		}
-		cout << "|" << endl;
+		cout << "|";
+		CursorPosition.Y++;
 	}
 }
 
 // this function returns true if the lot is full, false otherwise
+// starts from the top left because lots get filled the opposite way
 bool ParkingLot::isFull() const {
 	bool isFull = true;
 	for (int i = 0; i < height; i++) {
@@ -102,6 +127,47 @@ bool ParkingLot::isFull() const {
 	}
 	end:
 	return isFull;
+}
+
+// this function returns true if the lot is empty, false otherwise
+// starts from the bottom left because lots get filled that way
+bool ParkingLot::isEmpty() const {
+	bool isEmpty = true;
+	for (int j = 0; j < length; j++) {
+		for (int i = height - 1; i >= 0; i--) {
+			if (lot[i][j].isInUse()) {
+				isEmpty = false;
+				goto end;
+			}
+		}
+	}
+end:
+	return isEmpty;
+}
+
+// This finds the next available parking spot in the lot and assigns the student to it as well as the time remaining
+void ParkingLot::nextSpot(Student &s, int day) {
+
+	bool flag = true;
+
+	// look through every ParkingSpot
+	for (int i = height - 1 && flag; i >= 0; i--) {
+		for (int j = 0; j < length && flag; j++) {
+			
+			// if the spot is not in use
+			if (!lot[i][j].isInUse()) {
+
+				// set the hours remaining in the lot based on the Student's arrival and departure times
+				lot[i][j].setHoursRemaining(lot[i][j].Time(s, day));
+
+				// set the spot to in use
+				lot[i][j].setInUse(true);
+
+				// break from the loop
+				flag = false;
+			}
+		}
+	}
 }
 
 #endif
