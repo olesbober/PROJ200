@@ -20,6 +20,7 @@
 using namespace std;
 
 const int NUM_LOTS = 10; // number of parking lots at DVC
+const int NUM_STUDENTS = 1200; // number of students driving to campus
 
 // a function that prints all the DVC parking lots
 // this function will be used to refresh the map every step
@@ -92,6 +93,27 @@ int getStudentMins(string s) {
 	return stoi(s.substr(s.find(delimeter) + 1, s.size()));
 }
 
+void percentDrop(vector<Student> &s, int size, double percent) {
+	double newPercent = (100.0 - percent) / 100.0;
+
+	// create new size of student array
+	int newSize = NUM_STUDENTS * newPercent;
+
+	// make a useless Student
+	Student student;
+
+	// create new array with useless Students
+	vector<Student> temp(newSize, student);
+
+	// copy over the first newSize Students from students to temp
+	for (int index = 0; index < temp.size(); index++) {
+		temp[index] = s[index];
+	}
+
+	// assign temp to students
+	s = temp;
+}
+
 int main() {
 	// Create all the empty ParkingLots and store them in an array.
 	ParkingLot one(1, 17, 17);
@@ -119,6 +141,19 @@ int main() {
 
 	cout << "DVC Parking Simulation" << endl << "By Oles Bober and Roderic Deichler" << endl;
 
+	// make a student and put him in the students vector 12000 times for testing purposes
+	string arrivalTimes[] = { "08:00", "08:00", "08:00", "08:00", "12:00" };
+	string departureTimes[] = { "12:00", "12:00", "12:00", "12:00", "15:00" };
+	Classroom c1("H", 140);
+	Classroom c2("MA", 160);
+	Classroom firstClass[] = { c1, c2, c1, c2, c2 };
+	Student s1(arrivalTimes, departureTimes, firstClass);
+	for (int i = 0; i < NUM_STUDENTS; i++) {
+		students.push_back(s1);
+	}
+
+	bool flag;
+
 	// simulation loop
 	do {
 		// Print the information at the top of the screen
@@ -145,19 +180,10 @@ int main() {
 			hourPrintStr += '0';
 		hourPrintStr += to_string(hourPrint) + ":00";
 		cout << hourPrintStr;
-
-		// make a student and put him in the students vector 12000 times for testing purposes
-		string arrivalTimes[] = { "08:00", "08:00", "08:00", "08:00", "12:00" };
-		string departureTimes[] = { "12:00", "12:00", "12:00", "12:00", "15:00" };
-		Classroom c1("H", 140);
-		Classroom c2("MA", 160);
-		Classroom firstClass[] = { c1, c2, c1, c2, c2 };
-		Student s1(arrivalTimes, departureTimes, firstClass);
-		for (int i = 0; i < 12000; i++) {
-			students.push_back(s1);
-		}
-		
-		bool flag;
+		CursorPosition.X = 0;
+		CursorPosition.Y = 5;
+		SetConsoleCursorPosition(console, CursorPosition);
+		cout << "Current number of students: " << students.size();
 
 		// look through the students vector and assign them to spots
 		for (int i = 0; i < students.size(); i++) {
@@ -214,19 +240,32 @@ int main() {
 			}
 		}
 
-	//	// Now we must go through all the ParkingSpots and decrement the hours
-	//	for (int i = 0; i < NUM_LOTS; i++) { // for every ParkingLot in dvcParking
-	//		// if the lot is empty, go to the next lot
-	//		if (dvcParking[i].isEmpty())
-	//			goto lotEmpty;
-	//		// for every spot in the lot
-	//		for (int j = 0; j < dvcParking[i].getLotHeight(); j++) {
-	//			for (int k = 0; k < dvcParking[i].getLotLength(); k++) {
-	//				dvcParking[i].lot[j][k].decHours();
-	//			}
-	//		}
-	//lotEmpty:
-	//	}
+		// Now we must go through all the ParkingSpots and decrement the hours
+		for (int i = 0; i < NUM_LOTS; i++) { // for every ParkingLot in dvcParking
+			// if the lot is empty, go to the next lot
+			if (!dvcParking[i].isEmpty()) {
+				// for every spot in the lot
+				for (int j = 0; j < dvcParking[i].getLotHeight(); j++) {
+					for (int k = 0; k < dvcParking[i].getLotLength(); k++) {
+						// decrement the hours
+						dvcParking[i].lot[j][k].decHours();
+					}
+				}
+			}
+		}
+
+		// after two weeks, fifteen percent of Students drop
+		if (hour == 140) {
+			percentDrop(students, NUM_STUDENTS, 15);
+		}
+
+		// every week after that until week 12, 1 percent of students drop
+		if (hour == 210 || hour == 280 || hour == 350 || hour == 420 || hour == 490 || hour == 560 || hour == 630 || hour == 700 || hour == 770)
+			percentDrop(students, students.size(), 1);
+
+		// after 12 weeks, twenty percent of students drop
+		if (hour == 840)
+			percentDrop(students, students.size(), 20);
 
 		// print all the lots
 		printAllLots(dvcParking);

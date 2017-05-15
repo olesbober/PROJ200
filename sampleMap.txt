@@ -6,40 +6,44 @@ X| |X| |X| |X| |X| |X| |X
 X|X|X|X| | |X|X| | | | | 
 
 ParkingLot 1:
-Length: 7
-Height: 42
+Length: 17
+Height: 17
 
 ParkingLot 2:
 STAFF ONLY
 
 ParkingLot 3:
-Length: 29
-Height: 10
+Length: 17
+Height: 17
 
 ParkingLot 4:
-Length: 14
-Height: 30
+Length: 21
+Height: 20
 
 ParkingLot 5:
-Length: 17
-Height: 4
+Length: 9
+Height: 8
 
 ParkingLot 6:
-Length: 20
-Height: 11
+Length: 16
+Height: 14
 
 ParkingLot 7:
-Length: 9
-Height: 34
+Length: 18
+Height: 17
 
 ParkingLot 8:
-Length: 16
-Height: 34
+Length: 24
+Height: 23
 
 ParkingLot 9:
-Length: 12
-Height: 26
+Length: 24
+Height: 23
+
+ParkingLot 10:
+Length: 6
+Height: 5
 
 ParkingLot Overflow:
-Length: 14
-Height: 76
+Length: 33
+Height: 32

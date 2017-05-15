@@ -151,7 +151,7 @@ void ParkingLot::nextSpot(Student &s, int day) {
 	bool flag = true;
 
 	// look through every ParkingSpot
-	for (int i = height - 1 && flag; i >= 0; i--) {
+	for (int i = height - 1; i >= 0 && flag; i--) {
 		for (int j = 0; j < length && flag; j++) {
 			
 			// if the spot is not in use

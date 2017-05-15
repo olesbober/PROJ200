@@ -1,0 +1,16 @@
+ATC - Advanced Technology Center
+A - Art
+BFL - Business and Foreign Language
+ET - Engineering and Technology
+GYM - Gymnasium
+OH - Ornamental Horticulture
+H - Humanities
+LA - Liberal Tears
+L - Library
+LHS - Life and Health Sciences
+MA - Mathematics
+MM - Music
+PAC - Performing Arts Center
+PS - Physical Science
+PL - Planetarium
+SC - Science Center
