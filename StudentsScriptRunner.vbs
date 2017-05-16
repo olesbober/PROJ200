@@ -1,3 +1,6 @@
+' Written by Serhiy Malyy on 05-15-17
+' Modified by Oles Bober
+
 Dim strArrivalTitme, strDepartureTime, strBuildingIfo
 Dim intNumOfStudents : intNumOfStudents = InputBox("Enter Number of Students")
 
