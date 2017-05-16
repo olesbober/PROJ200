@@ -55,7 +55,7 @@ public:
 
 	// function sets bestLotArray according to what
 	// building is passed as an argument
-	void bestLot();
+	void bestLot(string);
 
 };
 
@@ -72,120 +72,119 @@ Classroom::Classroom(string b, int r) {
 }
 
 // implementation of bestLot function
-void Classroom::bestLot() {
+void Classroom::bestLot(string b) {
 
 	// ordered list of best lots to park for the
 	// Advanced Technology Center
-	if (building == "ATC") {
+	if (b == "ATC") {
 		int lot[10] = { 5,4,6,3,7,8,1,9,10,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Art Building
-	else if (building == "A") {
+	else if (b == "A") {
 		int lot[10] = { 8,7,9,6,10,5,1,11,3,4 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Business Foreign Language building
-	else if (building == "BFL") {
+	else if (b == "BFL") {
 		int lot[10] = { 7,6,5,8,4,9,3,10,11,1 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Engineering Technology building
-	else if (building == "ET") {
+	else if (b == "ET") {
 		int lot[10] = { 1,3,4,10,5,8,7,9,6,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Gymnasium
-	else if (building == "GYM") {
+	else if (b == "GYM") {
 		int lot[10] = { 10,1,9,8,3,7,4,5,6,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Ornamental Horticulture building
-	else if (building == "OH") {
+	else if (b == "OH") {
 		int lot[10] = { 10,9,8,7,1,6,3,5,11,4 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Humanities building
-	else if (building == "H") {
+	else if (b == "H") {
 		int lot[10] = { 7,6,5,8,3,9,10,11,1,4 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Liberal Arts building
-	else if (building == "LA") {
+	else if (b == "LA") {
 		int lot[10] = { 5,7,6,3,8,4,1,10,9,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Library
-	else if (building == "L") {
+	else if (b == "L") {
 		int lot[10] = { 3,4,1,5,6,7,10,8,9,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Life and Health Sciences building
-	else if (building == "LHS") {
+	else if (b == "LHS") {
 		int lot[10] = { 4,3,5,1,6,7,8,10,9,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Mathematics building
-	else if (building == "MA") {
+	else if (b == "MA") {
 		int lot[10] = { 1,3,8,7,10,4,5,6,9,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Music building
-	else if (building == "MM") {
+	else if (b == "MM") {
 		int lot[10] = { 1,10,3,8,9,4,7,5,6,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Performing Arts Center
-	else if (building == "PAC") {
+	else if (b == "PAC") {
 		int lot[10] = { 8,10,9,7,5,6,1,11,3,4 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Physical Science building
-	else if (building == "PS") {
+	else if (b == "PS") {
 		int lot[10] = { 4,3,5,1,6,7,8,10,9,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Planetarium
-	else if (building == "PL") {
+	else if (b == "PL") {
 		int lot[10] = { 4,3,5,6,1,7,10,8,9,11 };
 		setBestLotArray(lot);
 	}
 
 	// ordered list of best lots to park for the
 	// Science Center
-	else if (building == "SC") {
+	else if (b == "SC") {
 		int lot[10] = { 4,3,5,6,1,7,10,8,9,11 };
 		setBestLotArray(lot);
 	}
-
 }
 
 
