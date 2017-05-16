@@ -5,7 +5,7 @@ ET - Engineering and Technology
 GYM - Gymnasium
 OH - Ornamental Horticulture
 H - Humanities
-LA - Liberal Tears
+LA - Liberal Arts
 L - Library
 LHS - Life and Health Sciences
 MA - Mathematics
