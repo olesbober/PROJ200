@@ -84,13 +84,13 @@ For intStudent = 1 To intNumOfStudents
 	    	   		strArrivalTitme = strArrivalTitme & (intArrivalHour & ":" & intArrivalMinute) & delimiter
 						    	   		
 	       	 Case 3 
-	       		    intDepartureHour = 	intArrivalHour + (arrLectureDur(randomize_value(1,4)))
+	       		    intDepartureHour = 	intArrivalHour + (arrLectureDur(randomize_value(3,5)))
 	       		    intDepartureMinutes = arrMinutes(randomize_value(1,2))
 	       		    strDepartureTime = strDepartureTime & intDepartureHour & ":" & intDepartureMinutes & delimiter
 	       		    'print strDepartureTime
 	       		    
 	         Case 4 
-	         		strBuildingIfo = strBuildingIfo & arrBuildingd(randomize_value(0, 17)) & "-" & arrRoomNumber(randomize_value(1, 12)) & delimiter
+	         		strBuildingIfo = strBuildingIfo & arrBuildingd(randomize_value(1, 17)) & "-" & arrRoomNumber(randomize_value(1, 12)) & delimiter
 	         		'print strBld
 	       End Select
 

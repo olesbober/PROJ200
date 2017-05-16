@@ -379,7 +379,7 @@ int main() {
 		CursorPosition.X = 0;
 		CursorPosition.Y = 5;
 		SetConsoleCursorPosition(console, CursorPosition);
-		cout << "Current number of students: " << students.size();
+		cout << "Current number of students: " << students.size() << "   ";
 
 		// look through the students vector and assign them to spots
 		for (int i = 0; i < students.size(); i++) {
